@@ -11,7 +11,7 @@ This is a RPG text adventure game built using  **HTML**, **CSS** and **JavaScrip
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/emilystewart26/Website
+   git clone https://github.com/emilystewart26/adventure-game
    
 2. Open the project folder in your editor
 
