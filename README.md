@@ -2,7 +2,7 @@
 
 This is a RPG text adventure game built using  **HTML**, **CSS** and **JavaScript**, with a focus on OOP.
 
-🚀 **Deployed on GitHub Pages:** [[View Website](https://emilystewart26.github.io/Website/)]
+🚀 **Deployed on GitHub Pages:** [[View Website](https://emilystewart26.github.io/adventure-game/)]
 
 ---
 
