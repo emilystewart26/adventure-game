@@ -23,15 +23,15 @@ const songs = [
         power: 5
     },
     {
-        name: "Smoke on the Water",
+        name: " Smoke on the Water",
         power: 30
     },
     {
-        name: "Sweet Child O' Mine",
+        name: " Sweet Child O' Mine",
         power: 50
     },
     {
-        name: "Thunderstruck",
+        name: " Thunderstruck",
         power: 100
     },
 ];
@@ -44,7 +44,7 @@ const guitarists = [
 
     },
     {
-        name: "Angus Young",
+        name: "Jimi Hendrix",
         level: 8,
         beers: 60
     },
@@ -66,39 +66,50 @@ const locations = [
         name: "bar",
         "button text": ["Buy beers", "Talk to musician", "Go back to Pyramid Stage"],
         "button functions": [buyBeers, learnSong, goPyramid],
-        text: "You enter the bar tent and peer around, eyes adjusting from the bright sunshine outside. To your right you can see the bar, made up of massive metal kegs with chalkboards listing the delcious local beers on draught. There's an offer on: 10 cans for 10 cash. Festival-goers clad in sequins are talking excitedly about the set they just saw at the John Peel stage, whilst three men in banana suits and oversized sunglasses call out to start a conga line. It's pleasantly warm, you can smell feshly cut grass and the faint smell of barbeque drifting across from a nearby food van. Towards the back of the tent you see a small stage and microphone set up, and someone tuning up their acoustic guitar ready to perform"
+        text: "You step into the tent, blinking as the bright festival sun fades behind you and your eyes adjust. The air is thick with laughter and spilled beer. Festival-goers clad in sequins are chattering excitedly about the set they just saw at the John Peel stage, whilst three men in banana suits weave through the crowd, shouting gleefully for others to join an impromptu conga line.\n\n To your right you can see the bar, made up of massive metal kegs with chalkboards boasting the finest local beers on draught. There's an offer on: 10 cans for 10 cash. \n\n Toward the far end of the tent, a small stage glitters under fairy lights. You make out the figure of someone tuning their acoustic guitar, ready to perform."
     },
     {
         name: "other stage",
-        "button text": ["Battle Guitarist 1", "Battle Guitarist 2", "Go to Pyramid Stage"],
-        "button functions": [battleGuitarist, battleGuitarist2, goPyramid],
-        text: "You follow the throng of excited festival-goers past the Bandstand and across the bridge. Looming tall above you, the Other Stage comes slowly into view. There is a band performing. Music pumps loudly from the gigantic speaker stack either side of the stage, whilst a spectacular light show drives the crowd wild. You push your way through the crowd until you are right at the front, looking up at the performers on stage. Suddenly, one of them reaches into the crowd and before you know it you have been pulled on stage - you have been challeged to a riff-off!"
+        "button text": ["Bring it on!", "Go to West Holts Stage", "Go back to Pyramid Stage"],
+        "button functions": [battleGuitarist, goWestHolts, goPyramid],
+        text: "You follow the surge of festival-goers past the Bandstand and over the bridge. Towering above the crowd, the Other Stage looms into view. \n\n A band tears into their set, thunderous riffs blasting from colossal speaker stacks. Beams of colour slash through the air, driving the crowd into a frenzy. \n\n Fighting your way to the front, you find yourself looking up at the performers on stage. Suddenly, a hand darts out from above — grabbing you. \n\n In a blink, you’re hauled onto the stage. \n\n You’ve been challenged to a riff-off!"
     },
     {
         name: "battle",
-        "button text": ["Attack", "Dodge", "Run"],
-        "button functions": [attack, dodge, goPyramid],
-        text: "You are in a guitar battle!"
+        "button text": ["Battle!", "Guitar solo!", "Actually..."],
+        "button functions": [attack, guitarSolo, goPyramid],
+        text: "You are on stage, face to face with a guitar legend. The crowd has gone silent. This is your chance to show those promoters what you're made of! What do you do?"
     },
     {
         name: "beat guitarist",
-        "button text": ["Go to Pyramid Stage", "Go to Pyramid Stage", "Go to Pyramid Stage"],
-        "button functions": [goPyramid, goPyramid, goPyramid],
-        text: "The guitarist screams as their face is melted by your supreme shredding. You gain kudos and earn some cash."
+        "button text": ["Go to Pyramid Stage", "Go to West Holts Stage", "Go to the bar"],
+        "button functions": [goPyramid, goWestHolts, goBar],
+        text: "The guitarist screams as their face is melted by your supreme shredding. You gain kudos and earn some cash. Where would you like to go now?"
     },
     {
         name: "lose",
         "button text": ["Replay?", "Replay?", "Replay?"],
         "button functions": [restart, restart, restart],
-        text: "You die."
+        text: "The final notes of their mighty riff crashes over you like a wave. You feel your knees buckling beneath you - luckily a roadie rushes over just in time to break your fall! \n\n Overwhelmed and exhausted, you reach for a beer, only to realise you have none left. With nothing left to give, you stagger back to your tent for the night, defeated. \n\n Oh well. You can always try and get on the bill tomorrow night instead."
     },
     {
         name: "win",
         "button text": ["Replay?", "Replay?", "Replay?"],
         "button functions": [restart, restart, restart],
-        text: "The promoters look at you wide eyed and open mouthed. They've never witnessed a performance like it! You better get on stage for soundcheck, you're on in 5 minutes!! You win the game!"
+        text: "You approach the stage and notice a gate to the right marked ARTISTS ONLY. You unclip it and walk through.\n\n An important looking woman with a clipboard and headset instantly clocks you. 'What are you doing back here?!!', she snaps. 'You better get on stage for soundcheck, you're on in 5 minutes!!' \n\n Congratulations, you earned yourself a spot on the bill!"
     },
-
+    {
+        name: "west holts stage",
+        "button text": ["Bring it on!", "Go to Other Stage", "Go to Pyramid Stage"],
+        "button functions": [battleGuitarist2, goOther, goPyramid],
+        text: "You head east, weaving through rows of colourful food trucks, each one offering a tantalising mix of delicious smells. The warm air hums with the beat of distant dance music, while the soft tinkling of windchimes from nearby stalls blends with the chatter of festival-goers rushing to catch the next set. The West Holts Stage comes into view, enveloped in a sea of people. The vibe is electric - a funk band is playing, with carnival dancers shimmying to the punchy music, their vibrant costumes sparkling in the sunlight. \n\n Pushing through the crowd, you find yourself right in front of the stage, looking up at the performers. Suddenly, a hand shoots out from the stage and grabs you by the wrist. \n\n Before you can even react, you're pulled onto the stage. \n\n You've been challenged to a riff-off!"
+    },
+    {
+        name: "backstage",
+        "button text": ["Go to Pyramid Stage", "Go to Other Stage", "Go to the bar"],
+        "button functions": [goPyramid, goOther, goBar],
+        text: "You approach the stage and notice a gate to the right marked ARTISTS ONLY. You unclip it and walk through. An important looking woman with a clipboard and headset instantly clocks you."
+    },
 ]
 
 // initialise buttons
@@ -130,6 +141,18 @@ function goOther() {
     update(locations[2])
 }
 
+function goWestHolts() {
+    update(locations[7])
+}
+
+function sneakBackstage() {
+    update(locations[8]);
+    if (kudos < 30) {
+        text.innerText += " 'Get out!', she snaps. 'You don't have enough kudos to be back here! Come back when you reach 30.'";
+    } else {
+        winGame()
+    }
+}
 
 
 function buyBeers() {
@@ -151,7 +174,7 @@ function learnSong() {
         currentSong++;
         cashText.innerText = cash;
         let newSong = songs[currentSong].name;
-        text.innerText = "You approach the musician. You share stories of past festivals and she offers to teach you a new song. You accept. You can now play " + newSong + "! You drop some cash in her case as a thank you." ;
+        text.innerText = "You approach the musician. You share stories of past festivals and she offers to teach you a new song. You accept. You can now play " + newSong + "! You drop 30 cash in her case as a thank you." ;
         repertoire.push(newSong);
         text.innerText += " In your repertoire you now have: " + repertoire;
     } else {
@@ -159,43 +182,37 @@ function learnSong() {
     }   
     } else {
         text.innerText = "You already know the most powerful song!";
-        button2.innerText = "Teach song for 15 cash";
-        button2.onclick = teachSong;
     }
     
-}
-
-function teachSong() {
-    if (repertoire.length > 1) {
-        cash += 15;
-        cashText.innerText = cash;
-        let currentSong = repertoire.shift()
-        text.innerText = "You sold a " + currentSong + ".";
-        text.innerText += " In your repertoire you have: " + repertoire;
-    } else {
-        text.innerText = "Don't teach your only song!";
-    }
-
 }
 
 
 function battleGuitarist() {
     battling = 0;
     goBattle();
-    
 }
 
 function battleGuitarist2() {
     battling = 1;
     goBattle();
-
 }
 
-function sneakBackstage() {
-    battling = 2;
-    goBattle();
-    
+function generateRandomBoolean() {
+    return Math.random() >= 0.5;
 }
+
+function guitarSolo() {
+    text.innerText = "You turn to the crowd, drop to your knees, and start to shred.";
+        if (generateRandomBoolean()) {
+                text.innerText += " You killed it. The crowd goes wild and the cheers can be heard across the entire site. You gain mad kudos.";
+                kudos += 5;
+                kudosText.innerText = kudos;
+            } else {
+                text.innerText += " The crowd boos and someone even throws a muddy boot at your head! This is a devastating hit to your reputation at the festival, the promoters will never put you on the bill if this carries on! You lose all kudos.";
+                kudos = 0;
+                kudosText.innerText = kudos;
+            }
+    }
 
 function goBattle() {
     update(locations[3]);
@@ -221,7 +238,7 @@ function attack() {
 	if (beers <= 0) {
 		lose();
 	} else if (guitaristHealth <= 0) {
-		battling === 2 ? winGame() : defeatGuitarist();
+		defeatGuitarist();
 	}
 
 	if (Math.random() <= .1 && repertoire.length !== 1) {
@@ -238,10 +255,6 @@ function getGuitaristAttackValue(level) {
 
 function isGuitaristHit(beers) {
     return Math.random() > .2 || beers < 20;
-}
-
-function dodge() {
-    text.innerText = "You dodge the attack from the " + guitarists[battling].name + ".";
 }
 
 function defeatGuitarist() {

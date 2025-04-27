@@ -16,7 +16,7 @@ body {
   
   #game {
     max-width: 600px;
-    max-height: 400px;
+    max-height: 600px;
     background-color: rgb(246, 199, 134);
     color: white;
     margin: 0 auto;
