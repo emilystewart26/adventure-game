@@ -1,94 +1,90 @@
-let xp = 0;
-let health = 100;
-let gold = 50;
-let currentWeapon = 0;
-let fighting;
-let monsterHealth;
-let inventory = ["stick"];
+let kudos = 0;
+let beers = 100;
+let cash = 50;
+let currentSong = 0;
+let battling;
+let guitaristHealth;
+let repertoire = ["Wonderwall"];
 
 const button1 = document.querySelector("#button1");
 const button2 = document.querySelector("#button2");
 const button3 = document.querySelector("#button3");
 const text = document.querySelector("#text");
-const xpText = document.querySelector("#xpText");
-const healthText = document.querySelector("#healthText");
-const goldText = document.querySelector("#goldText");
-const monsterStats = document.querySelector("#monsterStats");
-const monsterNameText = document.querySelector("#monsterName");
-const monsterHealthText = document.querySelector("#monsterHealth");
+const kudosText = document.querySelector("#kudosText");
+const beersText = document.querySelector("#beersText");
+const cashText = document.querySelector("#cashText");
+const guitaristStats = document.querySelector("#guitaristStats");
+const guitaristNameText = document.querySelector("#guitaristName");
+const guitaristHealthText = document.querySelector("#guitaristHealth");
 
-const weapons = [
+const songs = [
     {
-        name: "stick",
+        name: "Wonderwall",
         power: 5
     },
     {
-        name: "dagger",
+        name: "Smoke on the Water",
         power: 30
     },
     {
-        name: "claw hammer",
+        name: "Sweet Child O' Mine",
         power: 50
     },
     {
-        name: "sword",
+        name: "Thunderstruck",
         power: 100
     },
 ];
 
-const monsters = [
+const guitarists = [
     {
-        name: "slime",
+        name: "Slash",
         level: 2,
-        health: 15
+        beers: 15
 
     },
     {
-        name: "fanged beast",
+        name: "Angus Young",
         level: 8,
-        health: 60
+        beers: 60
     },
     {
-        name: "dragon",
+        name: "guitarist backstage",
         level: 20,
-        health: 300
+        beers: 300
     },
-
-
-
-
 ]
 
 const locations = [
     {
-        name: "town square",
-        "button text": ["Go to store", "Go to cave", "Fight dragon"],
-        "button functions": [goStore, goCave, fightDragon],
-        text: "You are in the town square. You see a sign that says \"store\"."
+        name: "pyramid stage",
+        "button text": ["Go to bar", "Go to Other Stage", "Sneak backstage"],
+        "button functions": [goBar, goOther, sneakBackstage],
+        text: "You are at the Pyramid Stage. You see a large sign that says \"bar\" above a massive circus-style tent, and to the left, music from the Other Stage is drifting across."
     },
     {
-        name: "store",
-        "button text": ["Buy 10 health (10 gold)", "Buy weapon (30 gold)", "Go to town square"],
-        "button functions": [buyHealth, buyWeapon, goTown],
-        text: "You enter the store."
+        name: "bar",
+        "button text": ["Buy beers", "Talk to musician", "Go back to Pyramid Stage"],
+        "button functions": [buyBeers, learnSong, goPyramid],
+        text: "You enter the bar tent and peer around, eyes adjusting from the bright sunshine outside. To your right you can see the bar, made up of massive metal kegs with chalkboards listing the delcious local beers on draught. There's an offer on: 10 cans for 10 cash. Festival-goers clad in sequins are talking excitedly about the set they just saw at the John Peel stage, whilst three men in banana suits and oversized sunglasses call out to start a conga line. It's pleasantly warm, you can smell feshly cut grass and the faint smell of barbeque drifting across from a nearby food van. Towards the back of the tent you see a small stage and microphone set up, and someone tuning up their acoustic guitar ready to perform"
     },
     {
-        name: "cave",
-        "button text": ["Fight slime", "Fight fanged beast", "Go to town square"],
-        "button functions": [fightSlime, fightBeast, goTown],
-        text: "You enter the cave. You see some monsters."
+        name: "other stage",
+        "button text": ["Battle Guitarist 1", "Battle Guitarist 2", "Go to Pyramid Stage"],
+        "button functions": [battleGuitarist, battleGuitarist2, goPyramid],
+        text: "You follow the throng of excited festival-goers past the Bandstand and across the bridge. Looming tall above you, the Other Stage comes slowly into view. There is a band performing. Music pumps loudly from the gigantic speaker stack either side of the stage, whilst a spectacular light show drives the crowd wild. You push your way through the crowd until you are right at the front, looking up at the performers on stage. Suddenly, one of them reaches into the crowd and before you know it you have been pulled on stage - you have been challeged to a riff-off!"
     },
     {
-        name: "fight",
+        name: "battle",
         "button text": ["Attack", "Dodge", "Run"],
-        "button functions": [attack, dodge, goTown],
-        text: "You are fighting a monster."
+        "button functions": [attack, dodge, goPyramid],
+        text: "You are in a guitar battle!"
     },
     {
-        name: "kill monster",
-        "button text": ["Go to town square", "Go to town square", "Go to town square"],
-        "button functions": [goTown, goTown, goTown],
-        text: "The monster screams arrrgh as it dies. You gain experience points and find gold."
+        name: "beat guitarist",
+        "button text": ["Go to Pyramid Stage", "Go to Pyramid Stage", "Go to Pyramid Stage"],
+        "button functions": [goPyramid, goPyramid, goPyramid],
+        text: "The guitarist screams as their face is melted by your supreme shredding. You gain kudos and earn some cash."
     },
     {
         name: "lose",
@@ -100,21 +96,19 @@ const locations = [
         name: "win",
         "button text": ["Replay?", "Replay?", "Replay?"],
         "button functions": [restart, restart, restart],
-        text: "You defeat the dragon! You win the game!"
+        text: "The promoters look at you wide eyed and open mouthed. They've never witnessed a performance like it! You better get on stage for soundcheck, you're on in 5 minutes!! You win the game!"
     },
-
-
 
 ]
 
 // initialise buttons
 
-button1.onclick = goStore;
-button2.onclick = goCave;
-button3.onclick = fightDragon;
+button1.onclick = goBar;
+button2.onclick = goOther;
+button3.onclick = sneakBackstage;
 
 function update(location) {
-    monsterStats.style.display = "none";
+    guitaristStats.style.display = "none";
     button1.innerText = location["button text"][0];
     button2.innerText = location["button text"][1];
     button3.innerText = location["button text"][2];
@@ -124,137 +118,137 @@ function update(location) {
     text.innerText = location.text;
 }
 
-function goTown() {
+function goPyramid() {
     update(locations[0]);
 }
 
-function goStore() {
+function goBar() {
     update(locations[1]);
 }
 
-function goCave() {
+function goOther() {
     update(locations[2])
 }
 
 
 
-function buyHealth() {
-    if (gold >= 10) {
-        gold -= 10;
-        health += 10;
-        goldText.innerText = gold;
-        healthText.innerText = health;  
+function buyBeers() {
+    if (cash >= 10) {
+        cash -= 10;
+        beers += 10;
+        cashText.innerText = cash;
+        beersText.innerText = beers;  
     } else {
-        text.innerText = "You do not have enough gold to buy health."
+        text.innerText = "You do not have enough cash to buy beers."
     }
    
 }
 
-function buyWeapon() {
-    if (currentWeapon < weapons.length - 1) {
-       if (gold >= 30) {
-        gold -= 30;
-        currentWeapon++;
-        goldText.innerText = gold;
-        let newWeapon = weapons[currentWeapon].name;
-        text.innerText = "You now have a " + newWeapon + ".";
-        inventory.push(newWeapon);
-        text.innerText += " In your inventory you have: " + inventory;
+function learnSong() {
+    if (currentSong < songs.length - 1) {
+       if (cash >= 30) {
+        cash -= 30;
+        currentSong++;
+        cashText.innerText = cash;
+        let newSong = songs[currentSong].name;
+        text.innerText = "You approach the musician. You share stories of past festivals and she offers to teach you a new song. You accept. You can now play " + newSong + "! You drop some cash in her case as a thank you." ;
+        repertoire.push(newSong);
+        text.innerText += " In your repertoire you now have: " + repertoire;
     } else {
-        text.innerText = "You do not have enough gold to buy a weapon.";
+        text.innerText = "You approach the musican and notice her guitar case open on the ground in front of her. You don't have enough cash to drop in, so decide not to bother her. Shame. She's very talented, she may have been able to teach you a thing or two!";
     }   
     } else {
-        text.innerText = "You already have the most powerful weapon!";
-        button2.innerText = "Sell weapon for 15 gold";
-        button2.onclick = sellWeapon;
+        text.innerText = "You already know the most powerful song!";
+        button2.innerText = "Teach song for 15 cash";
+        button2.onclick = teachSong;
     }
     
 }
 
-function sellWeapon() {
-    if (inventory.length > 1) {
-        gold += 15;
-        goldText.innerText = gold;
-        let currentWeapon = inventory.shift()
-        text.innerText = "You sold a " + currentWeapon + ".";
-        text.innerText += " In your inventory you have: " + inventory;
+function teachSong() {
+    if (repertoire.length > 1) {
+        cash += 15;
+        cashText.innerText = cash;
+        let currentSong = repertoire.shift()
+        text.innerText = "You sold a " + currentSong + ".";
+        text.innerText += " In your repertoire you have: " + repertoire;
     } else {
-        text.innerText = "Don't sell your only weapon!";
+        text.innerText = "Don't teach your only song!";
     }
 
 }
 
 
-function fightSlime() {
-    fighting = 0;
-    goFight();
+function battleGuitarist() {
+    battling = 0;
+    goBattle();
     
 }
 
-function fightBeast() {
-    fighting = 1;
-    goFight();
+function battleGuitarist2() {
+    battling = 1;
+    goBattle();
 
 }
 
-function fightDragon() {
-    fighting = 2;
-    goFight();
+function sneakBackstage() {
+    battling = 2;
+    goBattle();
     
 }
 
-function goFight() {
+function goBattle() {
     update(locations[3]);
-    monsterHealth = monsters[fighting].health;
-    monsterStats.style.display = "block";
-    monsterNameText.innerText = monsters[fighting].name;
-    monsterHealthText.innerText = monsterHealth;
+    guitaristHealth = guitarists[battling].beers;
+    guitaristStats.style.display = "block";
+    guitaristNameText.innerText = guitarists[battling].name;
+    guitaristHealthText.innerText = guitaristHealth;
 }
 
 function attack() {
-    text.innerText = "The " + monsters[fighting].name + " attacks.";
-    text.innerText += " You attack it with your " + weapons[currentWeapon].name + ".";
+    text.innerText = guitarists[battling].name + " plays a mighty riff. You stagger backwards from the sonic intensity and drop some of your beer cans.";
+    text.innerText += " You counter by playing " + songs[currentSong].name + ".";
     
-    if (isMonsterHit()) {
-        health -= getMonsterAttackValue(monsters[fighting].level);
+    if (isGuitaristHit(beers)) {
+        beers -= getGuitaristAttackValue(guitarists[battling].level);
     } else {
-		text.innerText += " You miss.";
+		text.innerText += " Your performance falls flat.";
 	}
     
-    monsterHealth -= weapons[currentWeapon].power + Math.floor(Math.random() * xp) + 1;
-	healthText.innerText = health;
-	monsterHealthText.innerText = monsterHealth;   
-	if (health <= 0) {
+    guitaristHealth -= songs[currentSong].power + Math.floor(Math.random() * kudos) + 1;
+	beersText.innerText = beers;
+	guitaristHealthText.innerText = guitaristHealth;   
+	if (beers <= 0) {
 		lose();
-	} else if (monsterHealth <= 0) {
-		fighting === 2 ? winGame() : defeatMonster();
+	} else if (guitaristHealth <= 0) {
+		battling === 2 ? winGame() : defeatGuitarist();
 	}
 
-	if (Math.random() <= .1 && inventory.length !== 1) {
-        text.innerText += " Your " + inventory.pop() + " breaks.";
-        currentWeapon--;
+	if (Math.random() <= .1 && repertoire.length !== 1) {
+        text.innerText += " Your guitar string breaks mid-solo! You manage to fix it, but completely forget how to play " + repertoire.pop() + " in the chaos.";
+        currentSong--;
 	}
 }
 
-function getMonsterAttackValue(level) {
-    let hit = (level * 5) - (Math.floor(Math.random() * xp));
+function getGuitaristAttackValue(level) {
+    let hit = (level * 5) - (Math.floor(Math.random() * kudos));
     console.log(hit);
     return hit;
 }
 
-function isMonsterHit(health) {
-    return Math.random() > .2 || health < 20;
+function isGuitaristHit(beers) {
+    return Math.random() > .2 || beers < 20;
 }
 
 function dodge() {
-    text.innerText = "You dodge the attack from the " + monsters[fighting].name + ".";
+    text.innerText = "You dodge the attack from the " + guitarists[battling].name + ".";
 }
 
-function defeatMonster() {
-    gold += Math.floor(monsters[fighting].level * 6.7);
-    xp += monsters[fighting].level;
-    goldText.innerText = gold;
-    xpText.innerText = xp;
+function defeatGuitarist() {
+    cash += Math.floor(guitarists[battling].level * 6.7);
+    kudos += guitarists[battling].level;
+    cashText.innerText = cash;
+    kudosText.innerText = kudos;
     update(locations[4])
 }
 
@@ -267,13 +261,13 @@ function winGame() {
 }
 
 function restart() {
-    xp = 0;
-    health = 100;
-    gold = 50;
-    currentWeapon = 0;
-    inventory = ["stick"];
-    goldText.innerText = gold;
-    healthText.innerText = health;
-    xpText.innerText = xp;
-    goTown();
+    kudos = 0;
+    beers = 100;
+    cash = 50;
+    currentSong = 0;
+    repertoire = ["Wonderwall"];
+    cashText.innerText = cash;
+    beersText.innerText = beers;
+    kudosText.innerText = kudos;
+    goPyramid();
 }
