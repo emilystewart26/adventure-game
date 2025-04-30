@@ -39,12 +39,13 @@ body {
     text-align: right;
   }
   
-  #monsterStats {
+  #guitaristStats {
     display: none;
     border: 1px black solid;
     color: white;
     padding: 5px;
-    background-color: red;
+    background-color: orange;
+    border-radius: 10px;
   }
   
   .stat {
